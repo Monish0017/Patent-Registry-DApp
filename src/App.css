@@ -1,0 +1,336 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.App-header {
+  padding: 2rem 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.App-header p {
+  margin: 0.5rem 0 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.App-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.App-footer {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+/* Wallet Section */
+.wallet-section {
+  margin-bottom: 2rem;
+}
+
+.connect-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.connect-btn:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.wallet-info {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 1rem;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Registration Section */
+.register-section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.register-section h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input-field, .textarea-field {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.input-field::placeholder, .textarea-field::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.input-field:focus, .textarea-field:focus {
+  outline: none;
+  border-color: #4ecdc4;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(78, 205, 196, 0.3);
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: #4ecdc4;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.file-label:hover {
+  background: #45b7aa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.file-name {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.register-btn {
+  background: linear-gradient(45deg, #4ecdc4, #44a08d);
+  color: white;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.register-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+.register-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Patents Section */
+.patents-section {
+  text-align: left;
+}
+
+.patents-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.patents-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.fetch-btn {
+  background: #ffa726;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.fetch-btn:hover:not(:disabled) {
+  background: #ff9800;
+  transform: translateY(-2px);
+}
+
+.fetch-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.patents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.patent-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.patent-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.patent-card h3 {
+  margin: 0 0 1rem 0;
+  color: #4ecdc4;
+  font-size: 1.3rem;
+}
+
+.patent-description {
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.patent-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.patent-details strong {
+  color: #ffa726;
+}
+
+.ipfs-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.ipfs-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(45deg, #5a6fd8, #6a42a0);
+}
+
+.no-patents {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Status Section */
+.status-section {
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.status {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App-main {
+    padding: 1rem;
+  }
+  
+  .patents-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .patents-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .register-section {
+    padding: 1.5rem;
+  }
+  
+  .App-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    padding: 1rem;
+  }
+  
+  .App-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .register-btn {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .connect-btn {
+    width: 100%;
+  }
+}
