@@ -17,8 +17,11 @@ function App() {
     checkWalletConnection();
     // Test Pinata connection on app load
     testPinataConnection()
-      .then(() => setStatus("✅ Pinata IPFS connection ready"))
-      .catch(() => setStatus("⚠️ Please configure Pinata API keys in src/ipfs.js"));
+      .then(() => {
+          setStatus("Pinata IPFS connection ready");
+          fetchMyPatents();
+        })
+      .catch(() => setStatus("Please configure Pinata API keys in src/ipfs.js"));
   }, []);
 
   const checkWalletConnection = async () => {
@@ -40,7 +43,7 @@ function App() {
 
   const connectWallet = async () => {
     if (!window.ethereum) {
-      setStatus("❌ Please install MetaMask!");
+      setStatus("Please install MetaMask!");
       return;
     }
 
@@ -51,16 +54,16 @@ function App() {
       
       const networkOk = await checkNetwork();
       if (!networkOk) {
-        setStatus("❌ Please switch to Sepolia testnet in MetaMask");
+        setStatus("Please switch to Sepolia testnet in MetaMask");
         return;
       }
 
       setAccount(accounts[0]);
       setIsConnected(true);
-      setStatus("✅ Wallet connected successfully");
+      setStatus("Wallet connected successfully");
     } catch (error) {
       console.error("Error connecting wallet:", error);
-      setStatus("❌ Failed to connect wallet");
+      setStatus("Failed to connect wallet");
     }
   };
 
@@ -74,35 +77,35 @@ function App() {
 
   const registerPatent = async () => {
     if (!isConnected) {
-      setStatus("❌ Please connect your wallet first");
+      setStatus("Please connect your wallet first");
       return;
     }
 
     if (!title.trim() || !description.trim() || !file) {
-      setStatus("❌ Please fill all fields and select a file");
+      setStatus("Please fill all fields and select a file");
       return;
     }
 
     setLoading(true);
     try {
-      setStatus("📤 Uploading file to Pinata IPFS...");
+      setStatus("Uploading file to Pinata IPFS...");
       const fileHash = await uploadFile(file);
 
-      setStatus("🔗 Connecting to smart contract...");
+      setStatus("Connecting to smart contract...");
       const contract = await getContract();
       if (!contract) {
-        setStatus("❌ Failed to connect to contract");
+        setStatus("Failed to connect to contract");
         setLoading(false);
         return;
       }
 
-      setStatus("📝 Registering patent on blockchain...");
+      setStatus("Registering patent on blockchain...");
       const tx = await contract.registerPatent(title.trim(), description.trim(), fileHash);
       
-      setStatus("⏳ Waiting for transaction confirmation...");
+      setStatus("Waiting for transaction confirmation...");
       const receipt = await tx.wait();
 
-      setStatus(`✅ Patent registered successfully! IPFS Hash: ${fileHash}`);
+      setStatus(`Patent registered successfully! IPFS Hash: ${fileHash}`);
       
       // Clear form
       setTitle("");
@@ -116,9 +119,9 @@ function App() {
     } catch (error) {
       console.error("Error registering patent:", error);
       if (error.message.includes("Pinata")) {
-        setStatus("❌ IPFS Upload Error: " + error.message);
+        setStatus("IPFS Upload Error: " + error.message);
       } else {
-        setStatus("❌ Error: " + (error.message || "Transaction failed"));
+        setStatus("Error: " + (error.message || "Transaction failed"));
       }
     }
     setLoading(false);
@@ -126,16 +129,16 @@ function App() {
 
   const fetchMyPatents = async () => {
     if (!isConnected) {
-      setStatus("❌ Please connect your wallet first");
+      setStatus("Please connect your wallet first");
       return;
     }
 
     setLoading(true);
     try {
-      setStatus("🔍 Fetching your patents...");
+      setStatus("Fetching your patents...");
       const contract = await getContract();
       if (!contract) {
-        setStatus("❌ Failed to connect to contract");
+        setStatus("Failed to connect to contract");
         setLoading(false);
         return;
       }
@@ -160,10 +163,10 @@ function App() {
       }
       
       setPatents(results);
-      setStatus(`✅ Loaded ${results.length} patent(s)`);
+      setStatus(`Loaded ${results.length} patent(s)`);
     } catch (error) {
       console.error("Error fetching patents:", error);
-      setStatus("❌ Error fetching patents: " + error.message);
+      setStatus("Error fetching patents: " + error.message);
     }
     setLoading(false);
   };
@@ -171,7 +174,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>🔬 Patent Registry DApp</h1>
+        <h1>Patent Registry DApp</h1>
         <p>Blockchain-based patent registration with Pinata IPFS storage</p>
       </header>
 
@@ -180,11 +183,11 @@ function App() {
         <div className="wallet-section">
           {!isConnected ? (
             <button className="connect-btn" onClick={connectWallet}>
-              🦊 Connect MetaMask
+              Connect MetaMask
             </button>
           ) : (
             <div className="wallet-info">
-              <p>✅ Connected: {account.slice(0, 6)}...{account.slice(-4)}</p>
+              <p>Connected: {account.slice(0, 6)}...{account.slice(-4)}</p>
             </div>
           )}
         </div>
@@ -193,7 +196,7 @@ function App() {
           <>
             {/* Patent Registration Form */}
             <section className="register-section">
-              <h2>📝 Register New Patent</h2>
+              <h2>Register New Patent</h2>
               <div className="form-group">
                 <input
                   type="text"
@@ -223,7 +226,7 @@ function App() {
                   accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg"
                 />
                 <label htmlFor="fileInput" className="file-label">
-                  📎 Choose Patent Document
+                  Choose Patent Document
                 </label>
                 {file && <span className="file-name">{file.name}</span>}
               </div>
@@ -233,20 +236,20 @@ function App() {
                 onClick={registerPatent}
                 disabled={loading}
               >
-                {loading ? "⏳ Processing..." : "🚀 Register Patent"}
+                {loading ? "Processing..." : "Register Patent"}
               </button>
             </section>
 
             {/* Patents List */}
             <section className="patents-section">
               <div className="patents-header">
-                <h2>📋 My Patents</h2>
+                <h2>My Patents</h2>
                 <button 
                   className="fetch-btn" 
                   onClick={fetchMyPatents}
                   disabled={loading}
                 >
-                  {loading ? "⏳ Loading..." : "🔄 Refresh"}
+                  {loading ? "Loading..." : "Refresh"}
                 </button>
               </div>
 
@@ -266,7 +269,7 @@ function App() {
                           rel="noreferrer"
                           className="ipfs-link"
                         >
-                          📄 View Document
+                          View Document
                         </a>
                       </div>
                     </div>
@@ -286,7 +289,7 @@ function App() {
       </main>
 
       <footer className="App-footer">
-        <p>Built with React, Ethereum & Pinata IPFS 🚀</p>
+        <p>Built with React, Ethereum & Pinata IPFS</p>
       </footer>
     </div>
   );

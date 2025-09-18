@@ -4,7 +4,7 @@ import PatentRegistryABI from "./PatentRegistryABI.json";
 // Contract address from environment variables
 // In React, environment variables must be prefixed with REACT_APP_
 const CONTRACT_ADDRESS = process.env.REACT_APP_CONTRACT_ADDRESS;
-
+// console.log(CONTRACT_ADDRESS);
 export const getContract = async () => {
   if (!window.ethereum) {
     alert("Please install MetaMask!");

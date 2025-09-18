@@ -5,6 +5,8 @@ import axios from "axios";
 const PINATA_API_KEY = process.env.REACT_APP_PINATA_API_KEY;
 const PINATA_SECRET_KEY = process.env.REACT_APP_PINATA_SECRET_KEY;
 
+// console.log(PINATA_API_KEY);
+
 const pinataConfig = {
   headers: {
     'Content-Type': 'multipart/form-data',
